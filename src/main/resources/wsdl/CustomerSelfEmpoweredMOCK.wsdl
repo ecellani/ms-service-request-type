@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions name="CustomerSelfEmpowered" targetNamespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:WL5G3N2="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://www.gvt.com.br/GvtCommonEntities">
+  <WL5G3N0:types>
+    <xsd:schema targetNamespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/" xmlns:cse="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeAnalysisEntities" xmlns:exd="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnosticEntities" xmlns:gbi="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteractionEntities" xmlns:gvt="http://www.gvt.com.br/GvtCommonEntities" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ssr="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestTypeEntities" xmlns:tns="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeAnalysisEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered.xsd"/>
+      <xsd:import namespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestTypeEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered_1.xsd"/>
+      <xsd:import namespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteractionEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered_1_2.xsd"/>
+      <xsd:import namespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnosticEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered_1_2_3_4.xsd"/>
+      <xsd:import namespace="http://www.gvt.com.br/GvtCommonEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered_1_2_3.xsd"/>
+      <xsd:import namespace="http://www.gvt.com.br/GvtCommonEntities" schemaLocation="http://localhost:2000/?WSDL&amp;interface=CustomerSelfEmpoweredSOAP&amp;part=CustomerSelfEmpowered_1_2_3.xsd"/>
+      <xsd:element name="executeAnalysisIn" type="cse:executeAnalysisIn"/>
+      <xsd:element name="executeAnalysisOut" type="cse:executeAnalysisOut"/>
+      <xsd:element name="searchServiceRequestTypeIn" type="ssr:searchServiceRequestTypeIn"/>
+      <xsd:element name="searchServiceRequestTypeOut" type="ssr:searchServiceRequestTypeOut"/>
+      <xsd:element name="generateBusinessInteractionIn" type="gbi:generateBusinessInteractionIn"/>
+      <xsd:element name="generateBusinessInteractionOut" type="gbi:generateBusinessInteractionOut"/>
+      <xsd:element name="executeDiagnosticIn" type="exd:executeDiagnosticIn"/>
+      <xsd:element name="executeDiagnosticOut" type="exd:executeDiagnosticOut"/>
+    </xsd:schema>
+    <xsd:schema xmlns:cse="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeAnalysisEntities" xmlns:exd="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnosticEntities" xmlns:gbi="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteractionEntities" xmlns:gvt="http://www.gvt.com.br/GvtCommonEntities" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ssr="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestTypeEntities" xmlns:tns="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="executeDiagnosticRequest">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:executeDiagnosticIn">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="generateBusinessInteractionRequest">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:generateBusinessInteractionIn">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="GVTHeader">
+    <WL5G3N0:part name="GVTHeader" element="WL5G3N1:version">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="searchServiceRequestTypeResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:searchServiceRequestTypeOut">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="executeDiagnosticResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:executeDiagnosticOut">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="executeAnalysisRequest">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:executeAnalysisIn">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="gvtBusinessServiceResponseFault">
+    <WL5G3N0:part name="fault" element="WL5G3N1:gvtBusinessServiceResponseFault">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="executeAnalysisResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:executeAnalysisOut">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="searchServiceRequestTypeRequest">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:searchServiceRequestTypeIn">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="generateBusinessInteractionResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N2:generateBusinessInteractionOut">
+    </WL5G3N0:part>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="CustomerSelfEmpowered">
+    <WL5G3N0:operation name="executeAnalysis">
+      <WL5G3N0:input message="WL5G3N2:executeAnalysisRequest">
+    </WL5G3N0:input>
+      <WL5G3N0:output message="WL5G3N2:executeAnalysisResponse">
+    </WL5G3N0:output>
+      <WL5G3N0:fault name="fault" message="WL5G3N2:gvtBusinessServiceResponseFault">
+    </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="searchServiceRequestType">
+      <WL5G3N0:input message="WL5G3N2:searchServiceRequestTypeRequest">
+    </WL5G3N0:input>
+      <WL5G3N0:output message="WL5G3N2:searchServiceRequestTypeResponse">
+    </WL5G3N0:output>
+      <WL5G3N0:fault name="fault" message="WL5G3N2:gvtBusinessServiceResponseFault">
+    </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="generateBusinessInteraction">
+      <WL5G3N0:input message="WL5G3N2:generateBusinessInteractionRequest">
+    </WL5G3N0:input>
+      <WL5G3N0:output message="WL5G3N2:generateBusinessInteractionResponse">
+    </WL5G3N0:output>
+      <WL5G3N0:fault name="fault" message="WL5G3N2:gvtBusinessServiceResponseFault">
+    </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="executeDiagnostic">
+      <WL5G3N0:input message="WL5G3N2:executeDiagnosticRequest">
+    </WL5G3N0:input>
+      <WL5G3N0:output message="WL5G3N2:executeDiagnosticResponse">
+    </WL5G3N0:output>
+      <WL5G3N0:fault name="fault" message="WL5G3N2:gvtBusinessServiceResponseFault">
+    </WL5G3N0:fault>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="CustomerSelfEmpoweredSOAP" type="WL5G3N2:CustomerSelfEmpowered">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="executeAnalysis">
+      <WL5G3N3:operation soapAction="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeAnalysis"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="fault">
+        <WL5G3N3:fault name="fault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="searchServiceRequestType">
+      <WL5G3N3:operation soapAction="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestType"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="fault">
+        <WL5G3N3:fault name="fault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="generateBusinessInteraction">
+      <WL5G3N3:operation soapAction="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteraction"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="fault">
+        <WL5G3N3:fault name="fault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="executeDiagnostic">
+      <WL5G3N3:operation soapAction="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnostic"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="fault">
+        <WL5G3N3:fault name="fault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="CustomerSelfEmpowered">
+    <WL5G3N0:port name="CustomerSelfEmpoweredSOAP" binding="WL5G3N2:CustomerSelfEmpoweredSOAP">
+      <WL5G3N3:address location="http://127.0.0.1:2000/"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

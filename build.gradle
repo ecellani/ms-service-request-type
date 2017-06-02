@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'no.nils:wsdl2java:0.10'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'no.nils.wsdl2java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        mavenBom "org.apache.camel:camel-parent:$camelVersion"
+    }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    compile 'org.apache.camel:camel-saxon'
+    compile 'org.apache.camel:camel-servlet-starter'
+    compile 'org.apache.camel:camel-jackson-starter'
+    compile 'org.apache.camel:camel-spring-boot-starter'
+    compile 'org.apache.camel:camel-swagger-java-starter'
+
+    compile 'org.projectlombok:lombok:1.16.14'
+
+    testCompile 'junit:junit:4.11'
+}
+
+jar {
+    baseName = 'customer.self.empowered'
+    version = '0.0.1-SNAPSHOT'
+}
+
+wsdl2java {
+    locale = new Locale('pt', 'BR')
+    wsdlDir = file "$projectDir/src/main/resources/wsdl"
+    generatedWsdlDir = file "$projectDir/src/main/generated"
+    wsdlsToGenerate = [
+        ['-p',
+         'br.com.sysmap.webservice.customer.selfempowered',
+         '-autoNameResolution',
+         "$projectDir/src/main/resources/wsdl/CustomerSelfEmpoweredMOCK.wsdl"
+        ]
+    ]
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}

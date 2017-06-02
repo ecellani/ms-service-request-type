@@ -1,0 +1,19 @@
+server:
+  #  contextPath: /api
+  port: 5511
+
+logging:
+  file: ./logs/service.log
+  level:
+    root: info
+    br.com.sysmap: info
+  pattern:
+    file: "[%d{ISO8601}] %-5level %-40.40c{1.} : %m%ex%n"
+
+#spring:
+#  datasource:
+#    url: ${datapump.target-datasource-url-${datapump.target}}
+
+#  data:
+#    mongodb:
+#      uri: mongodb://mongodbsrv:27017/enrollmentDB
