@@ -30,6 +30,8 @@ dependencyManagement {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
 
+    compile 'org.apache.camel:camel-jaxb'
+    compile 'org.apache.camel:camel-http'
     compile 'org.apache.camel:camel-saxon'
     compile 'org.apache.camel:camel-servlet-starter'
     compile 'org.apache.camel:camel-jackson-starter'
@@ -37,6 +39,7 @@ dependencies {
     compile 'org.apache.camel:camel-swagger-java-starter'
 
     compile 'org.projectlombok:lombok:1.16.14'
+    compile 'org.apache.commons:commons-collections4:4.1'
 
     testCompile 'junit:junit:4.11'
 }

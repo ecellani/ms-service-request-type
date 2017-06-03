@@ -1,5 +1,5 @@
 server:
-  #  contextPath: /api
+  contextPath: /V1
   port: 5511
 
 logging:
@@ -7,6 +7,7 @@ logging:
   level:
     root: info
     br.com.sysmap: info
+    org.apache.camel: info
   pattern:
     file: "[%d{ISO8601}] %-5level %-40.40c{1.} : %m%ex%n"
 
@@ -17,3 +18,24 @@ logging:
 #  data:
 #    mongodb:
 #      uri: mongodb://mongodbsrv:27017/enrollmentDB
+
+application:
+  path:
+    # API Swagger
+    api-doc: /api-doc
+    api-title: User API
+    api-version: 0.0.1-SNAPSHOT
+
+    # Custom REST services
+    service-request-type: /service-request-type
+    service-request-type-desc: Customer Self Empowered Rest Service
+
+  third-party:
+    service-request-type-endpoint: http://localhost:8080
+
+  routes:
+    rest:
+      get-service-request-type: get-service-request-type
+      get-service-request-type-filter: get-service-request-type-filter
+    integration:
+      service-request-type: direct:integration-service-request-type
