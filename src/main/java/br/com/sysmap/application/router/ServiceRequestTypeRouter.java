@@ -37,10 +37,10 @@ public class ServiceRequestTypeRouter extends RouteBuilder {
             .consumes(APPLICATION_JSON_VALUE)
             .produces(APPLICATION_JSON_VALUE)
 
-        .get().description("").outTypeList(CustomResponse.class)
+        .get().description("Search the service request types").outTypeList(CustomResponse.class)
             .param().name("serviceid").type(query).dataType("string").description("The ID of service").endParam()
             .param().name("channel").type(query).dataType("string").description("The channel").endParam()
-            .responseMessage().code(OK.value()).message("The list of the objects successfully returned").endResponseMessage()
+            .responseMessage().code(OK.value()).message("The list of the service request types successfully returned").endResponseMessage()
             .to("direct:service-request-type-search")
         ;
    }

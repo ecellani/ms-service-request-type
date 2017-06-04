@@ -2,7 +2,6 @@ package br.com.sysmap.application.router;
 
 import br.com.sysmap.application.domain.ResponseError;
 import br.com.sysmap.infrastructure.config.ApplicationConfig;
-import br.com.sysmap.infrastructure.config.ApplicationConfig.Integration;
 import br.com.sysmap.infrastructure.helpers.SoapHandler;
 import org.apache.camel.TypeConversionException;
 import org.apache.camel.builder.RouteBuilder;
@@ -31,11 +30,10 @@ public class IntegrationRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        Integration routeIntegration = config.getRoutes().getIntegration();
         JaxbDataFormat jaxbSelfEmpowered = new JaxbDataFormat("br.com.sysmap.webservice.customer.selfempowered");
         Namespaces cus = new Namespaces("cus", "http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/");
 
-        from(routeIntegration.getServiceRequestType())
+        from("direct:integration-service-request-type")
             .setProperty("initial-body", body())
             .to("xquery:search-service-request-type.xquery")
             .setHeader(CONTENT_TYPE, constant(TEXT_XML_VALUE))

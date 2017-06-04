@@ -15,9 +15,8 @@ import org.springframework.stereotype.Component;
 public class ApplicationConfig {
 
     private Path path = new Path();
-    private Routes routes = new Routes();
-    private ThirdParty thirdParty = new ThirdParty();
     private Queues queues = new Queues();
+    private ThirdParty thirdParty = new ThirdParty();
 
     @Data
     @ToString
@@ -33,26 +32,6 @@ public class ApplicationConfig {
     @ToString
     public static class ThirdParty {
         private String serviceRequestTypeEndpoint;
-    }
-
-    @Data
-    @ToString
-    public static class Routes {
-        private Rest rest = new Rest();
-        private Integration integration = new Integration();
-    }
-
-    @Data
-    @ToString
-    public static class Rest {
-        private String getServiceRequestType;
-        private String getServiceRequestTypeFilter;
-    }
-
-    @Data
-    @ToString
-    public static class Integration {
-        private String serviceRequestType;
     }
 
     @Data

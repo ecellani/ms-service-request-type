@@ -8,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
@@ -36,58 +36,59 @@ public class ServiceRequestTypeImpl implements br.com.sysmap.application.service
     @Override
     public CustomResponse search(String serviceId, String channel) {
 
-        CustomResponse customResponse = new CustomResponse();
+        CustomResponse customResponse;
         List<ServiceRequestType> cache = getCache(serviceId, channel);
 
         if (isNotEmpty(cache)) {
-            customResponse.setSuccess(true);
-            customResponse.setPayload(cache);
-            return customResponse;
+            return new CustomResponse(true, cache);
         }
 
         try {
             Object result = searchServiceRequestTypeWS(serviceId, channel);
+
             if (result instanceof List) {
                 List<ServiceRequestType> serviceRequestTypeList = (List) result;
-
-                customResponse.setSuccess(true);
-                customResponse.setPayload(serviceRequestTypeList);
+                customResponse = new CustomResponse(true, serviceRequestTypeList);
                 saveCache(serviceId, channel, serviceRequestTypeList);
 
             } else if (result instanceof ResponseError) {
-                customResponse.setSuccess(false);
-                customResponse.setError((ResponseError) result);
+                customResponse = new CustomResponse(false, (ResponseError) result);
             } else {
                 throw new Exception("Unknown result object");
             }
             log.info(customResponse.toString());
         } catch (Exception e) {
-            ResponseError responseError = new ResponseError();
-            responseError.setMessage(e.getMessage());
-            customResponse.setSuccess(false);
-            customResponse.setError(responseError);
+            ResponseError responseError = new ResponseError("FATAL_ERROR", e.getMessage());
+            customResponse = new CustomResponse(false, responseError);
             log.error(e.getMessage(), e);
         }
         return customResponse;
     }
 
     private List<ServiceRequestType> getCache(String serviceId, String channel) {
-        String key = serviceId+channel;
-        if (redisTemplate.hasKey(key)) {
-            log.info("Key {} has been found in cache", key);
-            return redisTemplate.opsForValue().get(key);
+        try {
+            String key = serviceId + channel;
+            if (redisTemplate.hasKey(key)) {
+                log.info("Key {} has been found in cache", key);
+                return redisTemplate.opsForValue().get(key);
+            }
+        } catch (RedisConnectionFailureException e) {
+            log.warn("Cannot connect to Redis. The service is not available", e);
         }
         return null;
     }
 
     private void saveCache(String serviceId, String channel, List<ServiceRequestType> serviceRequestTypeList) {
-        String key = serviceId+channel;
-        redisTemplate.opsForValue().set(key, serviceRequestTypeList);
-        log.info("Key {} has been added to cache", key);
+        try {
+            String key = serviceId + channel;
+            redisTemplate.opsForValue().set(key, serviceRequestTypeList);
+            log.info("Key {} has been added to cache", key);
+        } catch (RedisConnectionFailureException e) {
+            log.warn("Cannot connect to Redis. The service is not available", e);
+        }
     }
 
     private Object searchServiceRequestTypeWS(String serviceId, String channel) throws ExecutionException, InterruptedException {
-        String ServiceRequestTypeRoute = config.getRoutes().getIntegration().getServiceRequestType();
-        return template.asyncSendBody(ServiceRequestTypeRoute, new ServiceRequestType(serviceId, channel)).get();
+        return template.asyncSendBody("direct:integration-service-request-type", new ServiceRequestType(serviceId, channel)).get();
     }
 }

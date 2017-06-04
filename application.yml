@@ -2,6 +2,11 @@ server:
   contextPath: /V1
   port: 5511
 
+spring:
+  redis:
+    host: localhost
+    port: 6379
+
 logging:
   file: ./logs/service.log
   level:
@@ -10,14 +15,6 @@ logging:
     org.apache.camel: info
   pattern:
     file: "[%d{ISO8601}] %-5level %-40.40c{1.} : %m%ex%n"
-
-#spring:
-#  datasource:
-#    url: ${datapump.target-datasource-url-${datapump.target}}
-
-#  data:
-#    mongodb:
-#      uri: mongodb://mongodbsrv:27017/enrollmentDB
 
 application:
   path:
@@ -32,13 +29,6 @@ application:
 
   third-party:
     service-request-type-endpoint: http://localhost:8080
-
-  routes:
-    rest:
-      get-service-request-type: get-service-request-type
-      get-service-request-type-filter: get-service-request-type-filter
-    integration:
-      service-request-type: direct:integration-service-request-type
 
   queues:
     service-request-type-search: rabbitmq://rabbitmqsrvlocal:5673/adapter.service.request.type?username=guest&password=guest&queue=adapter.service.request.type.search&exchangeType=direct&routingKey=search.v1&autoDelete=false&durable=true
