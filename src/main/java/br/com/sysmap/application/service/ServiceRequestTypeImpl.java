@@ -36,13 +36,11 @@ public class ServiceRequestTypeImpl implements br.com.sysmap.application.service
     @Override
     public CustomResponse search(String serviceId, String channel) {
 
-        CustomResponse customResponse;
         List<ServiceRequestType> cache = getCache(serviceId, channel);
-
-        if (isNotEmpty(cache)) {
+        if (isNotEmpty(cache))
             return new CustomResponse(true, cache);
-        }
 
+        CustomResponse customResponse;
         try {
             Object result = searchServiceRequestTypeWS(serviceId, channel);
 
