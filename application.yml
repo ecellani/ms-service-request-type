@@ -1,5 +1,5 @@
 server:
-  contextPath: /V1
+  contextPath: /v1
   port: 5511
 
 spring:
