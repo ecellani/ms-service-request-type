@@ -3,7 +3,7 @@
     "name": "ms-service-request-type",
     "port": 5511,
     "check": {
-      "http": "http://localhost:5511/V1/api-doc",
+      "http": "http://localhost:5511/V1/service-request-type/api-doc",
       "interval": "10s"
     }
   }

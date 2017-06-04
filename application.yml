@@ -19,7 +19,7 @@ logging:
 application:
   path:
     # API Swagger
-    api-doc: /api-doc
+    api-doc: ${application.path.service-request-type}/api-doc
     api-title: User API
     api-version: 0.0.1-SNAPSHOT
 
