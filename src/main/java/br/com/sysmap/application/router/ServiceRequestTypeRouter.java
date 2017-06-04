@@ -6,6 +6,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static org.apache.camel.model.rest.RestBindingMode.json;
 import static org.apache.camel.model.rest.RestParamType.query;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -22,17 +23,25 @@ public class ServiceRequestTypeRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+        restConfiguration()
+            .component("servlet")
+            .bindingMode(json)
+            .dataFormatProperty("prettyPrint", "true")
+            .apiContextPath(config.getPath().getApiDoc())
+                .apiProperty("api.title", config.getPath().getApiTitle())
+                .apiProperty("api.version", config.getPath().getApiVersion())
+                .apiProperty("cors", "true");
+
         rest(config.getPath().getServiceRequestType())
             .description(config.getPath().getServiceRequestTypeDesc())
             .consumes(APPLICATION_JSON_VALUE)
             .produces(APPLICATION_JSON_VALUE)
 
         .get().description("").outTypeList(CustomResponse.class)
-            .id(config.getRoutes().getRest().getGetServiceRequestTypeFilter())
             .param().name("serviceid").type(query).dataType("string").description("The ID of service").endParam()
             .param().name("channel").type(query).dataType("string").description("The channel").endParam()
             .responseMessage().code(OK.value()).message("The list of the objects successfully returned").endResponseMessage()
-            .to("bean:serviceRequestType?method=search(${header.serviceid}, ${header.channel})")
+            .to("direct:service-request-type-search")
         ;
    }
 }

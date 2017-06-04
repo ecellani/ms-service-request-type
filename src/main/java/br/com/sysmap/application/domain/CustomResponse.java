@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+import java.util.List;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 /**
@@ -16,9 +19,9 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
-public class CustomResponse {
+public class CustomResponse implements Serializable {
 
-    private boolean success;
-    private Object payload;
+    private Boolean success;
+    private List<ServiceRequestType> payload;
     private ResponseError error;
 }

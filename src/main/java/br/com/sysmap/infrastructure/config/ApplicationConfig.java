@@ -17,6 +17,7 @@ public class ApplicationConfig {
     private Path path = new Path();
     private Routes routes = new Routes();
     private ThirdParty thirdParty = new ThirdParty();
+    private Queues queues = new Queues();
 
     @Data
     @ToString
@@ -52,5 +53,11 @@ public class ApplicationConfig {
     @ToString
     public static class Integration {
         private String serviceRequestType;
+    }
+
+    @Data
+    @ToString
+    public static class Queues {
+        private String serviceRequestTypeSearch;
     }
 }

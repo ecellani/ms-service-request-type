@@ -1,5 +1,6 @@
 package br.com.sysmap.application.service;
 
+import br.com.sysmap.application.domain.ResponseError;
 import br.com.sysmap.application.domain.ServiceRequestType;
 import br.com.sysmap.webservice.customer.selfempowered.GvtBusinessServiceResponseFault;
 import br.com.sysmap.webservice.customer.selfempowered.SearchServiceRequestTypeOut;
@@ -24,6 +25,8 @@ public class AntiCorruptionLayerImpl implements AntiCorruptionLayer {
                     .collect(toList());
         } else if (in instanceof GvtBusinessServiceResponseFault) {
             return externalErrorToResponseError.apply((GvtBusinessServiceResponseFault) in);
+        } else if (in instanceof ResponseError) {
+            return in;
         }
         throw new Exception("Unknown result object");
     }

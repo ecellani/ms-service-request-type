@@ -29,10 +29,12 @@ dependencyManagement {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-redis'
 
     compile 'org.apache.camel:camel-jaxb'
     compile 'org.apache.camel:camel-http'
     compile 'org.apache.camel:camel-saxon'
+    compile 'org.apache.camel:camel-rabbitmq'
     compile 'org.apache.camel:camel-servlet-starter'
     compile 'org.apache.camel:camel-jackson-starter'
     compile 'org.apache.camel:camel-spring-boot-starter'

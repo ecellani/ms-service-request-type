@@ -1,11 +1,11 @@
 package br.com.sysmap.application.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
@@ -16,11 +16,20 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @Data
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(NON_NULL)
-public class ResponseError {
+public class ResponseError implements Serializable {
 
-    private String responseStatus;
+    public ResponseError(String responseStatus, String message, List<ResponseErrorMessage> messages) {
+        this.message = message;
+        this.messages = messages;
+        this.responseStatus = responseStatus;
+    }
+
+    public ResponseError(String responseStatus, String message) {
+        this(responseStatus, message, null);
+    }
+
     private String message;
+    private String responseStatus;
     private List<ResponseErrorMessage> messages;
 }
