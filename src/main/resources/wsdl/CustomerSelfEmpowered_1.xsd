@@ -1,0 +1,26 @@
+
+<schema targetNamespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestTypeEntities" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/searchServiceRequestTypeEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--tipos de entradas e saídas-->
+  <xs:complexType name="searchServiceRequestTypeIn">
+    <xs:sequence>
+      <xs:element name="serviceRequestType" type="tns:ServiceRequestTypeIn" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchServiceRequestTypeOut">
+    <xs:sequence>
+      <xs:element name="serviceRequestType" type="tns:ServiceRequestTypeOut" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceRequestTypeIn">
+    <xs:sequence>
+      <xs:element name="channel" type="xs:string" minOccurs="0"/>
+      <xs:element name="serviceId" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceRequestTypeOut">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</schema>

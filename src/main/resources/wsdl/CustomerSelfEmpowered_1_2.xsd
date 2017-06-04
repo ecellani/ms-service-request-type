@@ -1,0 +1,26 @@
+
+<schema targetNamespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteractionEntities" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/generateBusinessInteractionEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gvt="http://www.gvt.com.br/GvtCommonEntities">
+  <xs:import schemaLocation="CustomerSelfEmpowered_1_2_3.xsd" namespace="http://www.gvt.com.br/GvtCommonEntities"/>
+  <xs:complexType name="generateBusinessInteractionIn">
+    <xs:sequence>
+      <xs:element name="serviceRequestType" type="tns:ServiceRequestTypeIn" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generateBusinessInteractionOut">
+    <xs:sequence>
+      <xs:element name="businessInteraction" type="tns:BusinessInteractionOut" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceRequestTypeIn">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="serviceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="channel" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessInteractionOut">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</schema>

@@ -1,0 +1,59 @@
+
+<schema targetNamespace="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnosticEntities" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.gvt.com.br/CustomerManagement/CustomerSelfManagement/CustomerSelfEmpowered/CustomerSelfEmpowered/executeDiagnosticEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gvt="http://www.gvt.com.br/GvtCommonEntities">
+  <xs:import schemaLocation="CustomerSelfEmpowered_1_2_3.xsd" namespace="http://www.gvt.com.br/GvtCommonEntities"/>
+  <xs:complexType name="executeDiagnosticIn">
+    <xs:sequence>
+      <xs:element name="customerServiceRequest" type="tns:CustomerServiceRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="executeDiagnosticOut">
+    <xs:sequence>
+      <xs:element name="businessInteraction" type="tns:BusinessInteractionOut" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--IN-->
+  <xs:complexType name="CustomerServiceRequest">
+    <xs:complexContent>
+      <xs:extension base="tns:ServiceRequest"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceRequest">
+    <xs:complexContent>
+      <xs:extension base="tns:BusinessInteractionIn">
+        <xs:sequence>
+          <xs:element name="notes" type="xs:string" minOccurs="0"/>
+          <xs:element name="serviceRequestType" type="tns:ServiceRequestType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessInteractionIn">
+    <xs:sequence>
+      <xs:element name="interactionId" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceRequestType">
+    <xs:sequence>
+      <xs:element name="characteristicSpecification" type="tns:CharacteristicSpecification" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CharacteristicSpecification">
+    <xs:sequence>
+      <xs:element name="characteristicSpecValue" type="tns:CharacteristicSpecValue" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CharacteristicSpecValue">
+    <xs:sequence>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--/IN-->
+  <!--OUT-->
+  <xs:complexType name="BusinessInteractionOut">
+    <xs:sequence>
+      <xs:element name="interactionProtocol" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--/OUT-->
+</schema>

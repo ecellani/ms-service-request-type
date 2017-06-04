@@ -4,7 +4,7 @@ server:
 
 spring:
   redis:
-    host: localhost
+    host: redislocal
     port: 6379
 
 logging:
@@ -31,4 +31,4 @@ application:
     service-request-type-endpoint: http://localhost:8080
 
   queues:
-    service-request-type-search: rabbitmq://rabbitmqsrvlocal:5673/adapter.service.request.type?username=guest&password=guest&queue=adapter.service.request.type.search&exchangeType=direct&routingKey=search.v1&autoDelete=false&durable=true
+    service-request-type-search: rabbitmq://rabbitmqlocal:5672/adapter.service.request.type?username=guest&password=guest&queue=adapter.service.request.type.search&exchangeType=direct&routingKey=search.v1&autoDelete=false&durable=true
