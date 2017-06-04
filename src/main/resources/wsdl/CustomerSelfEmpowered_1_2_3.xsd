@@ -1,0 +1,159 @@
+
+<schema targetNamespace="http://www.gvt.com.br/GvtCommonEntities" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.gvt.com.br/GvtCommonEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="gvtBusinessServiceResponse">
+    <xs:sequence>
+      <xs:element name="responseStatus" type="tns:gvtBusinessServiceResponseStatus" minOccurs="1"/>
+      <xs:element name="messages" type="tns:gvtBusinessServiceResponseMessage" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="gvtBusinessServiceResponseStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS"/>
+      <xs:enumeration value="BUSINESS_ERROR"/>
+      <xs:enumeration value="FATAL_ERROR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="gvtBusinessServiceResponseMessage">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>breve descricao em portugues relevante ao negocio
+						do resultado da operacao</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="statusCode" type="xs:string" minOccurs="1">
+        <annotation>
+          <documentation>codigo retorno gvt do resultado da operacao conforme
+						definido em
+						http://svuxpjir1:9090/display/CAPINT/Consumer+Interface+Proxys</documentation>
+        </annotation>
+      </xs:element>
+      <xs:element name="statusDetail" type="xs:string" minOccurs="1">
+        <annotation>
+          <documentation>descricao do status code</documentation>
+        </annotation>
+      </xs:element>
+      <xs:element name="system" type="xs:string" minOccurs="1">
+        <annotation>
+          <documentation>caso possivel informar qual sistema legado gvt
+						resultou a falha</documentation>
+        </annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="version" nillable="true">
+    <xs:annotation>
+      <xs:documentation>Header GVT para versionamento de serviços. Guia de
+				utilizacao em
+				http://svuxpjir1:9090/display/CAPINT/Consumer+Interface+Proxys</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="4"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:simpleType name="TypeMessage">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CHANGE_STATUS"/>
+      <xs:enumeration value="CLOSE"/>
+      <xs:enumeration value="DONE"/>
+      <xs:enumeration value="NOT_DONE"/>
+      <xs:enumeration value="DEINSTALL_EQUIPMENT"/>
+      <xs:enumeration value="UPDATE_EQUIPMENT_INVENTORY"/>
+      <xs:enumeration value="REMOVE_EQUIPMENT_INVENTORY"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="WorkforceAction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ISSUE"/>
+      <xs:enumeration value="REAGENDAMENTO"/>
+      <xs:enumeration value="PENDENCIA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Id da mensagem</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="tns:TypeMessage" minOccurs="1">
+        <annotation>
+          <documentation>tipo da mensagem</documentation>
+        </annotation>
+      </xs:element>
+      <xs:element name="startDateTime" type="xs:dateTime" minOccurs="1">
+        <annotation>
+          <documentation>Hora de inicio do processamento da mensagem</documentation>
+        </annotation>
+      </xs:element>
+      <xs:element name="endDateTime" type="xs:dateTime" minOccurs="1">
+        <annotation>
+          <documentation>Hora de finalização do processamento da mensagem</documentation>
+        </annotation>
+      </xs:element>
+      <xs:element name="status" type="xs:string" minOccurs="1">
+        <annotation>
+          <documentation>Situação da mensagem</documentation>
+        </annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="gvtBusinessServiceResponseFault">
+    <xs:sequence>
+      <xs:element name="gvtBusinessServiceResponse" type="tns:gvtBusinessServiceResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="gvtBusinessServiceResponseFault" type="tns:gvtBusinessServiceResponseFault"/>
+  <xs:complexType name="HeaderParameters">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="serviceChannel" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="application" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="sessionId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ipAddress" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="startTransaction" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="searchParameters" type="tns:SearchParameters" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Parameters">
+    <xs:sequence>
+      <xs:element name="from" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <element name="HeaderParameters" type="tns:HeaderParameters"/>
+  <xs:complexType name="SearchParameters">
+    <xs:sequence>
+      <xs:element name="pageNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="pageSize" type="xs:string" minOccurs="0"/>
+      <xs:element name="orderByField" type="xs:string" minOccurs="0"/>
+      <xs:element name="orderBy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SearchLocationParameters">
+    <xs:complexContent>
+      <xs:extension base="tns:SearchParameters">
+        <xs:sequence>
+          <xs:element name="broadbandVelocity" type="xs:string"/>
+          <xs:element name="actualStep" type="xs:int"/>
+          <xs:element name="totalSteps" type="xs:int"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SearchPriority">
+    <xs:sequence>
+      <xs:element name="priorityNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="prioritySize" type="xs:string" minOccurs="0"/>
+      <xs:element name="priorityType" type="xs:string" minOccurs="0"/>
+      <xs:element name="searchPriorityParameters" type="tns:SearchPriorityParameters" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SearchPriorityParameters">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</schema>
