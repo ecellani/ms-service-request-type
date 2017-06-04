@@ -28,7 +28,7 @@ application:
     service-request-type-desc: Customer Self Empowered Rest Service
 
   third-party:
-    service-request-type-endpoint: http://mock:8080/mockservice
+    service-request-type-endpoint: http://mock:8080/mockservice/
 
   queues:
     service-request-type-search: rabbitmq://rabbitmqlocal:5672/adapter.service.request.type?username=guest&password=guest&queue=adapter.service.request.type.search&exchangeType=direct&routingKey=search.v1&autoDelete=false&durable=true
