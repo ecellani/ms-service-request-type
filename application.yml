@@ -24,7 +24,7 @@ application:
     api-version: 0.0.1-SNAPSHOT
 
     # Custom REST services
-    service-request-type: /service-request-type
+    service-request-type: /service-request-types
     service-request-type-desc: Customer Self Empowered Rest Service
 
   third-party:
