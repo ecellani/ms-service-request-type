@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 
 import static org.apache.camel.model.rest.RestBindingMode.json;
 import static org.apache.camel.model.rest.RestParamType.query;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 /**
  * Created by ecellani on 01/06/17.
@@ -34,13 +35,20 @@ public class ServiceRequestTypeRouter extends RouteBuilder {
 
         rest(config.getPath().getServiceRequestType())
             .description(config.getPath().getServiceRequestTypeDesc())
-            .consumes(APPLICATION_JSON_VALUE)
-            .produces(APPLICATION_JSON_VALUE)
+            .consumes(APPLICATION_JSON_UTF8_VALUE)
+            .produces(APPLICATION_JSON_UTF8_VALUE)
 
-        .get().description("Search the service request types").outTypeList(CustomResponse.class)
-            .param().name("serviceid").type(query).dataType("string").description("The ID of service").endParam()
-            .param().name("channel").type(query).dataType("string").description("The channel").endParam()
-            .responseMessage().code(OK.value()).message("The list of the service request types successfully returned").endResponseMessage()
+        .get().description("Search the service request types").outType(CustomResponse.class)
+            .param().name("serviceid").type(query).dataType("string").description("The ID of service").required(true).endParam()
+            .param().name("channel").type(query).dataType("string").description("The channel").required(true).endParam()
+            .responseMessage()
+                .code(OK.value())
+                .message("Custom Response with the list of the service request types successfully returned")
+            .endResponseMessage()
+            .responseMessage()
+                .code(INTERNAL_SERVER_ERROR.value())
+                .message("Custom Response with the error description")
+            .endResponseMessage()
             .to("direct:service-request-type-search")
         ;
    }
