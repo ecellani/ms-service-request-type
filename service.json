@@ -1,0 +1,10 @@
+{
+  "service": {
+    "name": "ms-service-request-type",
+    "port": 5511,
+    "check": {
+      "http": "http://localhost:5511",
+      "interval": "10s"
+    }
+  }
+}
