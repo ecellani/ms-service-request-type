@@ -1,0 +1,6 @@
+--2017-06-04 20:55:22--  https://808d6bf1-b6be-4832-93f5-87f745fa2663.traffic-emea-trial.axway.io/customer-requests/v1/service-request-types?serviceid=1
+Resolving 808d6bf1-b6be-4832-93f5-87f745fa2663.traffic-emea-trial.axway.io... 54.194.143.100, 52.208.75.83
+Connecting to 808d6bf1-b6be-4832-93f5-87f745fa2663.traffic-emea-trial.axway.io|54.194.143.100|:443... connected.
+HTTP request sent, awaiting response... 500 Security failure
+2017-06-04 20:55:23 ERROR 500: Security failure.
+
